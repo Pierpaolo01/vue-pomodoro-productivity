@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     activePomodoro: "pomodoro",
+    isTicking: false,
     pom: 25,
     short: 5,
     long: 15,
@@ -13,6 +14,10 @@ export default createStore({
   mutations: {
     CHANGE_POM(state, payload) {
       state.activePomodoro = payload;
+      state.isTicking = false;
+    },
+    START_PAUSE_TIMER(state){
+        state.isTicking = !state.isTicking;
     },
     TOGGLE_SETTINGS(state) {
       state.settingsIsOpen = !state.settingsIsOpen;
@@ -27,6 +32,9 @@ export default createStore({
   getters: {
     GET_POM(state) {
       return state.activePomodoro;
+    },
+    GET_START_PAUSE(state){
+        return state.isTicking;
     },
     GET_POM_TIMER(state) {
       if (state.activePomodoro === "pomodoro") {

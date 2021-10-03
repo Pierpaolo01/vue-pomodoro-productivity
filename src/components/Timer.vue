@@ -1,9 +1,8 @@
 <template>
-  <section class="timer flex" @click="isTicking = !isTicking">
+  <section class="timer flex" @click="START_PAUSE_TIMER">
     <div class="timer-container flex">
       <div class="count-time-border" :style="color">
-        <h1 :style="font" v-if="!currentMinutes">25:00</h1>
-        <h1 :style="font" v-else>{{ currentMinutes }}:{{ currentSeconds }}</h1>
+        <h1 :style="font">{{ currentMinutes }}:{{ currentSeconds }}</h1>
         <h2 :style="font">S T A R T</h2>
       </div>
     </div>
@@ -11,23 +10,26 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   data() {
     return {
       isTicking: null,
-      startingTime: this.GET_POM_TIMER * 60,
+      startingTime: null,
       currentSeconds: null,
       currentMinutes: null,
       countdown: null,
     };
   },
   methods: {
-    startTimer() {
-      this.isTicking = !this.isTicking;
-    },
+    ...mapMutations(["START_PAUSE_TIMER"]),
+
     startStopTimer() {
+      if (this.startingTime === null) {
+        this.startingTime = this.GET_POM_TIMER * 60;
+        console.log(this.startingTime);
+      }
       this.currentMinutes = Math.floor(this.startingTime / 60);
       this.currentSeconds = this.startingTime % 60;
       this.currentSeconds =
@@ -39,7 +41,7 @@ export default {
     },
   },
   watch: {
-    isTicking(val) {
+    GET_START_PAUSE(val) {
       this.countdown;
       if (val) {
         this.countdown = setInterval(() => {
@@ -49,9 +51,21 @@ export default {
         clearInterval(this.countdown);
       }
     },
+    GET_POM() {
+      this.startingTime = null;
+      this.startStopTimer();
+    },
   },
   computed: {
-    ...mapGetters(["GET_SETTINGS", "GET_FONT", "GET_COLOR", "GET_POM_TIMER"]),
+    ...mapGetters([
+      "GET_SETTINGS",
+      "GET_FONT",
+      "GET_COLOR",
+      "GET_POM",
+      "GET_POM_TIMER",
+      "GET_START_PAUSE",
+    ]),
+
     font() {
       return "font-family:" + this.GET_FONT;
     },
