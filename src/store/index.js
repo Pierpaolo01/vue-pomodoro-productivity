@@ -3,6 +3,8 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     activePomodoro: "pomodoro",
+    chosenPom: null,
+    promptSwitchDialog: false,
     isTicking: false,
     pom: 25,
     short: 5,
@@ -13,11 +15,22 @@ export default createStore({
   },
   mutations: {
     CHANGE_POM(state, payload) {
-      state.activePomodoro = payload;
-      state.isTicking = false;
+      if (payload) {
+        state.chosenPom = payload;
+      }
+      if (state.isTicking) {
+        state.promptSwitchDialog = true;
+        state.isTicking = false;
+      } else {
+        state.activePomodoro = state.chosenPom;
+      }
     },
-    START_PAUSE_TIMER(state){
-        state.isTicking = !state.isTicking;
+    TOGGLE_SWITCH_DIALOG(state) {
+      state.promptSwitchDialog = !state.promptSwitchDialog;
+      state.isTicking = true;
+    },
+    START_PAUSE_TIMER(state) {
+      state.isTicking = !state.isTicking;
     },
     TOGGLE_SETTINGS(state) {
       state.settingsIsOpen = !state.settingsIsOpen;
@@ -33,8 +46,8 @@ export default createStore({
     GET_POM(state) {
       return state.activePomodoro;
     },
-    GET_START_PAUSE(state){
-        return state.isTicking;
+    GET_START_PAUSE(state) {
+      return state.isTicking;
     },
     GET_POM_TIMER(state) {
       if (state.activePomodoro === "pomodoro") {
@@ -54,6 +67,9 @@ export default createStore({
     },
     GET_COLOR(state) {
       return state.mainColor;
+    },
+    GET_SWITCH_DIALOG(state) {
+      return state.promptSwitchDialog;
     },
   },
 });

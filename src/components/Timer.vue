@@ -1,4 +1,5 @@
 <template>
+  <SwitchDialog v-if="GET_SWITCH_DIALOG" @dialogEmits="processSwitchDialog" />
   <section class="timer flex" @click="START_PAUSE_TIMER">
     <div class="timer-container flex">
       <div class="count-time-border" :style="color">
@@ -10,12 +11,16 @@
 </template>
 
 <script>
+import SwitchDialog from "./SwitchDialog.vue";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
+  components: {
+    SwitchDialog,
+  },
   data() {
     return {
-      isTicking: null,
+      showSwitchDialog: false,
       startingTime: null,
       currentSeconds: null,
       currentMinutes: null,
@@ -23,7 +28,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["START_PAUSE_TIMER"]),
+    ...mapMutations(["START_PAUSE_TIMER", "TOGGLE_SWITCH_DIALOG", "CHANGE_POM"]),
 
     startStopTimer() {
       if (this.startingTime === null) {
@@ -39,6 +44,18 @@ export default {
 
       this.startingTime--;
     },
+    processSwitchDialog(val) {
+      console.log(val);
+      if (val === "return") {
+        this.TOGGLE_SWITCH_DIALOG();
+      } else if (val === "next") {
+        this.CHANGE_POM();
+        this.TOGGLE_SWITCH_DIALOG();
+        this.startingTime = null;
+        this.startStopTimer();
+      }
+      this.showSwitchDialog = false;
+    },
   },
   watch: {
     GET_START_PAUSE(val) {
@@ -52,8 +69,13 @@ export default {
       }
     },
     GET_POM() {
-      this.startingTime = null;
-      this.startStopTimer();
+      if (this.GET_START_PAUSE) {
+        this.showSwitchDialog = true;
+        this.START_PAUSE_TIMER();
+      } else {
+        this.startingTime = null;
+        this.startStopTimer();
+      }
     },
   },
   computed: {
@@ -64,6 +86,7 @@ export default {
       "GET_POM",
       "GET_POM_TIMER",
       "GET_START_PAUSE",
+      "GET_SWITCH_DIALOG",
     ]),
 
     font() {

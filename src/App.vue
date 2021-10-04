@@ -21,6 +21,7 @@ import MenuBar from "./components/MenuBar.vue";
 import Timer from "./components/Timer.vue";
 import SettingsModal from "./components/SettingsModal.vue";
 
+
 import { mapMutations, mapGetters } from "vuex";
 export default {
   name: "App",
@@ -103,5 +104,13 @@ body {
   background-color: #1e213f;
   height: 100%;
   margin: 0;
+}
+
+.red {
+  background-color: #ec5757;
+}
+
+.purple {
+  background-color: #7c5dfa;
 }
 </style>

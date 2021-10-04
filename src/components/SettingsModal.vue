@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <teleport to="body">
-      <div class="container-modal">
+      <div class="container-modal flex">
         <div class="content flex-column">
           <header class="flex">
             <h1>Settings</h1>
@@ -108,7 +108,7 @@ export default {
   left: 0;
   background-color: rgba(0, 0, 0, 0.404);
   z-index: 5;
-  display: flex;
+  // display: flex;
   justify-content: center;
   align-items: center;
 
