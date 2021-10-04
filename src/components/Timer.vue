@@ -21,12 +21,11 @@ export default {
   },
   data() {
     return {
-      showSwitchDialog: false,
       startingTime: null,
       currentSeconds: null,
       currentMinutes: null,
       countdown: null,
-      tune: new Audio('@/assets/sounds/bell_tune.mp3'),
+      tune: new Audio(require('@/assets/sounds/bell_tune.mp3')),
     };
   },
   methods: {
@@ -39,7 +38,6 @@ export default {
     startStopTimer() {
       if (this.startingTime === null) {
         this.startingTime = this.GET_POM_TIMER * 60;
-        console.log(this.startingTime);
       }
       this.currentMinutes = Math.floor(this.startingTime / 60);
       this.currentSeconds = this.startingTime % 60;
@@ -50,6 +48,7 @@ export default {
 
       this.startingTime--;
       if(this.startingTime === 0 ){
+        this.currentSeconds = "00"
         clearInterval(this.countdown);
         this.tune.play();
 
@@ -65,7 +64,6 @@ export default {
         this.startingTime = null;
         this.startStopTimer();
       }
-      this.showSwitchDialog = false;
     },
   },
   watch: {
@@ -81,7 +79,6 @@ export default {
     },
     GET_POM() {
       if (this.GET_START_PAUSE) {
-        this.showSwitchDialog = true;
         this.START_PAUSE_TIMER();
       } else {
         this.startingTime = null;
