@@ -10,21 +10,42 @@
             </button>
           </header>
           <main class="body flex-column">
-            <h3 >T I M E (M I N U T E S)</h3>
+            <h3>T I M E (M I N U T E S)</h3>
 
             <div class="pomodoro flex">
-              <label for="pom" >pomodoro</label>
-              <input type="number" id="pom"  v-model="pom" @input="CHANGE_TIMING( {cName: 'pom', val: $event.target.value })"/>
+              <label for="pom">pomodoro</label>
+              <input
+                type="number"
+                id="pom"
+                :value="pom"
+                @input="
+                  CHANGE_TIMING({ cName: 'pom', val: $event.target.value })
+                "
+              />
             </div>
 
             <div class="short flex">
-              <label for="short" >short break</label>
-              <input type="number" id="short" v-model="short" @input="CHANGE_TIMING( {cName: 'short', val: $event.target.value })"/>
+              <label for="short">short break</label>
+              <input
+                type="number"
+                id="short"
+                :value="short"
+                @input="
+                  CHANGE_TIMING({ cName: 'short', val: $event.target.value })
+                "
+              />
             </div>
 
             <div class="long flex">
-              <label for="long" >long break</label>
-              <input type="number" id="long" v-model="long" @input="CHANGE_TIMING( {cName: 'long', val: $event.target.value })"/>
+              <label for="long">long break</label>
+              <input
+                type="number"
+                id="long"
+                :value="long"
+                @input="
+                  CHANGE_TIMING({ cName: 'pom', val: $event.target.value })
+                "
+              />
             </div>
           </main>
           <div class="options flex-column">
@@ -56,21 +77,32 @@
             </div>
 
             <div class="colors-container flex-column">
-              <h3 >C O L O R</h3>
+              <h3>C O L O R</h3>
               <div class="color flex">
-                <button style="background-color: #f87070" @click="CHANGE_COLOR('#f87070')">
+                <button
+                  style="background-color: #f87070"
+                  @click="CHANGE_COLOR('#f87070')"
+                >
                   <div :class="GET_COLOR === '#f87070' ? 'check' : ''"></div>
                 </button>
-                <button style="background-color: #70f3f8" @click="CHANGE_COLOR('#70f3f8')">
+                <button
+                  style="background-color: #70f3f8"
+                  @click="CHANGE_COLOR('#70f3f8')"
+                >
                   <div :class="GET_COLOR === '#70f3f8' ? 'check' : ''"></div>
                 </button>
-                <button style="background-color: #d881f8" @click="CHANGE_COLOR('#d881f8')">
+                <button
+                  style="background-color: #d881f8"
+                  @click="CHANGE_COLOR('#d881f8')"
+                >
                   <div :class="GET_COLOR === '#d881f8' ? 'check' : ''"></div>
                 </button>
               </div>
             </div>
           </div>
-          <button class="close" :style=" color" @click="TOGGLE_SETTINGS">Close</button>
+          <button class="close" :style="color" @click="TOGGLE_SETTINGS">
+            Close
+          </button>
         </div>
       </div>
     </teleport>
@@ -81,7 +113,13 @@
 import { mapMutations, mapGetters, mapState } from "vuex";
 export default {
   methods: {
-    ...mapMutations(["TOGGLE_SETTINGS", "CHANGE_FONT", "CHANGE_COLOR", "CHANGE_COLOR", "CHANGE_TIMING"]),
+    ...mapMutations([
+      "TOGGLE_SETTINGS",
+      "CHANGE_FONT",
+      "CHANGE_COLOR",
+      "CHANGE_COLOR",
+      "CHANGE_TIMING",
+    ]),
   },
   computed: {
     ...mapState(["pom", "short", "long"]),
@@ -89,7 +127,7 @@ export default {
     font() {
       return "font-family:" + this.GET_FONT;
     },
-    color(){
+    color() {
       return "background-color:" + this.GET_COLOR;
     },
   },
@@ -188,7 +226,7 @@ export default {
       border: none;
     }
 
-    .close{
+    .close {
       width: 140px;
       height: 50px;
       padding: 15px;

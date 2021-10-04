@@ -4,7 +4,8 @@
     <div class="timer-container flex">
       <div class="count-time-border" :style="color">
         <h1 :style="font">{{ currentMinutes }}:{{ currentSeconds }}</h1>
-        <h2 :style="font">S T A R T</h2>
+        <h2 :style="font" v-if="!GET_START_PAUSE">S T A R T</h2>
+        <h2 :style="font" v-else>P A U S E </h2>
       </div>
     </div>
   </section>
@@ -25,6 +26,7 @@ export default {
       currentSeconds: null,
       currentMinutes: null,
       countdown: null,
+      tune: new Audio('@/assets/sounds/bell_tune.mp3'),
     };
   },
   methods: {
@@ -47,6 +49,11 @@ export default {
           : this.currentSeconds;
 
       this.startingTime--;
+      if(this.startingTime === 0 ){
+        clearInterval(this.countdown);
+        this.tune.play();
+
+      }
     },
     processSwitchDialog(val) {
       console.log(val);
