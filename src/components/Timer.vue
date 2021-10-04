@@ -28,7 +28,11 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["START_PAUSE_TIMER", "TOGGLE_SWITCH_DIALOG", "CHANGE_POM"]),
+    ...mapMutations([
+      "START_PAUSE_TIMER",
+      "TOGGLE_SWITCH_DIALOG",
+      "CHANGE_POM",
+    ]),
 
     startStopTimer() {
       if (this.startingTime === null) {
@@ -76,6 +80,10 @@ export default {
         this.startingTime = null;
         this.startStopTimer();
       }
+    },
+    GET_POM_TIMER() {
+      this.startingTime = null;
+      this.startStopTimer();
     },
   },
   computed: {

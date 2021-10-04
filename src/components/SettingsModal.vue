@@ -14,17 +14,17 @@
 
             <div class="pomodoro flex">
               <label for="pom" >pomodoro</label>
-              <input type="number" value="25" id="pom"  />
+              <input type="number" id="pom"  v-model="pom" @input="CHANGE_TIMING( {cName: 'pom', val: $event.target.value })"/>
             </div>
 
             <div class="short flex">
               <label for="short" >short break</label>
-              <input type="number" value="5" id="short"  />
+              <input type="number" id="short" v-model="short" @input="CHANGE_TIMING( {cName: 'short', val: $event.target.value })"/>
             </div>
 
             <div class="long flex">
               <label for="long" >long break</label>
-              <input type="number" value="15" id="long"  />
+              <input type="number" id="long" v-model="long" @input="CHANGE_TIMING( {cName: 'long', val: $event.target.value })"/>
             </div>
           </main>
           <div class="options flex-column">
@@ -78,12 +78,13 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from "vuex";
+import { mapMutations, mapGetters, mapState } from "vuex";
 export default {
   methods: {
-    ...mapMutations(["TOGGLE_SETTINGS", "CHANGE_FONT", "CHANGE_COLOR", "CHANGE_COLOR"]),
+    ...mapMutations(["TOGGLE_SETTINGS", "CHANGE_FONT", "CHANGE_COLOR", "CHANGE_COLOR", "CHANGE_TIMING"]),
   },
   computed: {
+    ...mapState(["pom", "short", "long"]),
     ...mapGetters(["GET_FONT", "GET_COLOR"]),
     font() {
       return "font-family:" + this.GET_FONT;

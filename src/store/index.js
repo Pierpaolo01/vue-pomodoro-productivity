@@ -25,6 +25,16 @@ export default createStore({
         state.activePomodoro = state.chosenPom;
       }
     },
+    CHANGE_TIMING(state, payload){
+
+        if(payload.cName === 'pom'){
+            state.pom = payload.val;
+        }else if (payload.cName === 'short'){
+            state.short = payload.val;
+        }else if(payload.cName === 'long'){
+            state.long = payload.val;
+        }
+    },
     TOGGLE_SWITCH_DIALOG(state) {
       state.promptSwitchDialog = !state.promptSwitchDialog;
       state.isTicking = true;
