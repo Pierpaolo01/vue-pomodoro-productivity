@@ -10,7 +10,7 @@ export default createStore({
     short: 5,
     long: 15,
     settingsIsOpen: false,
-    fontStyle: "kumbh sans",
+    fontStyle: "space mono",
     mainColor: "#f87070",
   },
   mutations: {

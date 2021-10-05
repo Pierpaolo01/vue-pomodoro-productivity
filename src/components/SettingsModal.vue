@@ -147,7 +147,6 @@ export default {
   left: 0;
   background-color: rgba(0, 0, 0, 0.404);
   z-index: 5;
-  // display: flex;
   justify-content: center;
   align-items: center;
 
@@ -156,7 +155,7 @@ export default {
     height: 85%;
     border-radius: 10px;
     background-color: white;
-    max-width: h0px;
+    max-width: 450px;
     justify-content: space-between;
 
     header {

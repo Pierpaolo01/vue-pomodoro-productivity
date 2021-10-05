@@ -120,7 +120,7 @@ export default {
   height: 0px;
   padding-bottom: 90%;
   border-radius: 50%;
-  //   background-color: white;
+  box-shadow: #262b58 -15px -20px 20px 20px;
   background-color: #1e213f;
   background: linear-gradient(120deg, #161932 35%, #292d53 75%);
   justify-content: center;

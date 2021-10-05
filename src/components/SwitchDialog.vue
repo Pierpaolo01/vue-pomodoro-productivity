@@ -5,8 +5,12 @@
         <div class="content flex-column">
           <p>Are you sure you want to EXIT? Your changes will not be saved</p>
           <div class="actions flex">
-            <button @click="$emit('dialogEmits', 'return')" class="purple">Return</button>
-            <button @click="$emit('dialogEmits', 'next')" class="red">Next Pom</button>
+            <button @click="$emit('dialogEmits', 'return')" class="purple">
+              Return
+            </button>
+            <button @click="$emit('dialogEmits', 'next')" class="red">
+              Next Pom
+            </button>
           </div>
         </div>
       </div>
@@ -16,10 +20,7 @@
 
 <script>
 export default {
-  methods: {
-
-  },
-
+  methods: {},
 };
 </script>
 
@@ -60,15 +61,15 @@ export default {
       }
     }
     button,
-.button {
-  cursor: pointer;
-  padding: 16px 24px;
-  border-radius: 30px;
-  border: none;
-  font-size: 12px;
-  margin-right: 8px;
-  color: #fff;
-}
+    .button {
+      cursor: pointer;
+      padding: 16px 24px;
+      border-radius: 30px;
+      border: none;
+      font-size: 12px;
+      margin-right: 8px;
+      color: #fff;
+    }
   }
 }
 </style>
