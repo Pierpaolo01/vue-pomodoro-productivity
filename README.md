@@ -13,8 +13,6 @@ This app helps practice the pomodoro workflow, which composes of 25minutes of fo
   - [Continued development](#continued-development)
 - [Author](#author)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
