@@ -84,4 +84,4 @@ For continued development I think it would be nice to orient this app to a marke
 
 ## Author
 
-- Website - [Pierpaolo Pascarella](www.pierpaolo-porfolio.xyz)
+- Website - [Pierpaolo Pascarella](http://www.pierpaolo-porfolio.xyz)
