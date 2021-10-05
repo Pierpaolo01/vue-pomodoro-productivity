@@ -43,8 +43,6 @@ Users should be able to:
 
 During this project I empheised practicing with VUEX state management in order to not have repeating code & unecessary component communication. 
 
-To see how you can add code snippets, see below:
-
 I really liked this simple CSS solution to creating a checkmark, simply by using a div, giving it a border bottom & right and rotating it 45° degrees. 
 ```css
 .colors-container {
